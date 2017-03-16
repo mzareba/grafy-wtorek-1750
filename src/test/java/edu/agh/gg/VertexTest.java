@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class VertexTest {
     @Test
     public void vertexCreatedWithoutParentShouldNotHaveParents() throws Exception {
-        Vertex newVertex = Vertex.withoutParent();
+        Vertex newVertex = Vertex.withoutParent(VertexLabel.E);
 
         assertNotNull(newVertex);
         assertNull(newVertex.getParent());
@@ -17,8 +17,8 @@ public class VertexTest {
 
     @Test
     public void connectedSiblingsShouldKnowAboutEachOther() throws Exception {
-        Vertex vertexA = Vertex.withoutParent();
-        Vertex vertexB = Vertex.withoutParent();
+        Vertex vertexA = Vertex.withoutParent(VertexLabel.E);
+        Vertex vertexB = Vertex.withoutParent(VertexLabel.E);
 
         EdgeDirection direction = E;
         vertexA.connectToSibling(direction, vertexB);
@@ -29,7 +29,7 @@ public class VertexTest {
 
     @Test
     public void childrenShouldKnwAboutParentAndParentsAboutChildren() throws Exception {
-        Vertex parent = Vertex.withoutParent();
+        Vertex parent = Vertex.withoutParent(VertexLabel.E);
         EdgeDirection direction = EdgeDirection.NW;
 
         Vertex child = parent.createChild(direction);
@@ -43,7 +43,7 @@ public class VertexTest {
 
     @Test
     public void attributesShouldBeRetrievable() throws Exception {
-        Vertex vertex = Vertex.withoutParent();
+        Vertex vertex = Vertex.withoutParent(VertexLabel.E);
 
         String name = "attribute";
         String value = "value";

@@ -9,14 +9,24 @@ public class Vertex {
     private final ConcurrentMap<EdgeDirection, Vertex> childrenEdges = new ConcurrentHashMap<>();
     private final ConcurrentMap<EdgeDirection, Vertex> siblingsEdges = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, Object> attributes = new ConcurrentHashMap<>();
+    private VertexLabel label;
 
-    private Vertex(Vertex parent, EdgeDirection parentDirection) {
+    private Vertex(Vertex parent, EdgeDirection parentDirection, VertexLabel label) {
         this.parent = parent;
         this.parentDirection = parentDirection;
+        this.label = label;
     }
 
-    public static Vertex withoutParent() {
-        return new Vertex(null, null);
+    public static Vertex withoutParent(VertexLabel label) {
+        return new Vertex(null, null, label);
+    }
+
+    public VertexLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(VertexLabel label) {
+        this.label = label;
     }
 
     public void connectToSibling(EdgeDirection direction, Vertex sibling) {
@@ -25,7 +35,7 @@ public class Vertex {
     }
 
     public Vertex createChild(EdgeDirection direction) {
-        Vertex child = new Vertex(this, direction.opposite());
+        Vertex child = new Vertex(this, direction.opposite(), label);
         childrenEdges.put(direction, child);
         return child;
     }
