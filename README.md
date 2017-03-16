@@ -1,3 +1,7 @@
+# Build info
+
+[![Build Status](https://travis-ci.org/lared/grafy-wtorek-1750.svg?branch=master)](https://travis-ci.org/lared/grafy-wtorek-1750)
+
 # Specification
 
 [The .pdf file](specification.pdf)
