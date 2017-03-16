@@ -1,3 +1,7 @@
+# Specification
+
+[The .pdf file](specification.pdf)
+
 # Graph structure
 
 It's assumed that the processed graph has the following properties:
