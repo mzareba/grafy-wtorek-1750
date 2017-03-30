@@ -65,7 +65,6 @@ public class P1Test {
         Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
         p1.apply(disconnectedNode);
-        
         Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
         Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
         
@@ -137,7 +136,6 @@ public class P1Test {
         Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
         p1.apply(disconnectedNode);
-        
         Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
         Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
         
