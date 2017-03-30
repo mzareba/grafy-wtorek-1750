@@ -5,6 +5,7 @@ import edu.agh.gg.Vertex;
 import edu.agh.gg.VertexLabel;
 
 public class P1 implements Production {
+
     @Override
     public boolean applicableTo(Vertex vertex) {
         return vertex.getLabel().equals(VertexLabel.I);
@@ -22,11 +23,13 @@ public class P1 implements Production {
         rightTopI.setLabel(VertexLabel.I); 
         rightBottomI.setLabel(VertexLabel.I); 
 
+
         Vertex leftTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex rightTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex leftMiddleE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleMiddleE = Vertex.withoutParent(VertexLabel.E);
+
         Vertex rightMiddleE = Vertex.withoutParent(VertexLabel.E);
         Vertex leftBottomE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleBottomE = Vertex.withoutParent(VertexLabel.E);
