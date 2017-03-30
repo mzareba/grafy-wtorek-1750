@@ -14,29 +14,33 @@ public class P1Test {
 
     @Test
     public void shouldNotCreateAnyChildren() throws Exception {
-        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.S);
+        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
 
         p1.apply(disconnectedNode);
 
-        assertEquals(0, disconnectedNode.getChildrenEdges().size());
+        assertEquals(4, disconnectedNode.getChildrenEdges().size());
     }
 
     @Test
     public void sizesOfTheSiblingsShouldBe4or5P1() throws Exception {
-        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.S);
+        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
         p1.apply(disconnectedNode);
-        Vertex west = disconnectedNode.getSibling(EdgeDirection.W);
-        Vertex southWest = disconnectedNode.getSibling(EdgeDirection.SW);
-        Vertex north = disconnectedNode.getSibling(EdgeDirection.N);
-        Vertex east = disconnectedNode.getSibling(EdgeDirection.E);
-        Vertex south = disconnectedNode.getSibling(EdgeDirection.S);
-        Vertex northWest = disconnectedNode.getSibling(EdgeDirection.NW);
-        Vertex northEast = disconnectedNode.getSibling(EdgeDirection.NE);
-        Vertex southEast = disconnectedNode.getSibling(EdgeDirection.SE);
+        
+        Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
+        Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
+        
+        Vertex west = central.getSibling(EdgeDirection.W);
+        Vertex southWest = central.getSibling(EdgeDirection.SW);
+        Vertex north = central.getSibling(EdgeDirection.N);
+        Vertex east = central.getSibling(EdgeDirection.E);
+        Vertex south = central.getSibling(EdgeDirection.S);
+        Vertex northWest = central.getSibling(EdgeDirection.NW);
+        Vertex northEast = central.getSibling(EdgeDirection.NE);
+        Vertex southEast = central.getSibling(EdgeDirection.SE);
 
-        assertEquals(8, disconnectedNode.getSiblingsEdges().size());
+        assertEquals(8, central.getSiblingsEdges().size());
         assertNotNull(west);
         assertNotNull(southWest);
         assertNotNull(north);
@@ -47,28 +51,32 @@ public class P1Test {
         assertNotNull(southEast);
 
         assertEquals(west.getSiblingsEdges().size(), 5);
-        assertEquals(southWest.getSiblingsEdges().size(), 4);
+        assertEquals(southWest.getSiblingsEdges().size(), 3);
         assertEquals(north.getSiblingsEdges().size(), 5);
         assertEquals(east.getSiblingsEdges().size(), 5);
         assertEquals(south.getSiblingsEdges().size(), 5);
-        assertEquals(northWest.getSiblingsEdges().size(), 4);
-        assertEquals(northEast.getSiblingsEdges().size(), 4);
-        assertEquals(southEast.getSiblingsEdges().size(), 4);
+        assertEquals(northWest.getSiblingsEdges().size(), 3);
+        assertEquals(northEast.getSiblingsEdges().size(), 3);
+        assertEquals(southEast.getSiblingsEdges().size(), 3);
     }
 
     @Test
     public void shouldHaveCorrectSiblingsDirections() throws Exception {
-        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.S);
+        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
         p1.apply(disconnectedNode);
-        Vertex west = disconnectedNode.getSibling(EdgeDirection.W);
-        Vertex southWest = disconnectedNode.getSibling(EdgeDirection.SW);
-        Vertex north = disconnectedNode.getSibling(EdgeDirection.N);
-        Vertex east = disconnectedNode.getSibling(EdgeDirection.E);
-        Vertex south = disconnectedNode.getSibling(EdgeDirection.S);
-        Vertex northWest = disconnectedNode.getSibling(EdgeDirection.NW);
-        Vertex northEast = disconnectedNode.getSibling(EdgeDirection.NE);
-        Vertex southEast = disconnectedNode.getSibling(EdgeDirection.SE);
+        
+        Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
+        Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
+        
+        Vertex west = central.getSibling(EdgeDirection.W);
+        Vertex southWest = central.getSibling(EdgeDirection.SW);
+        Vertex north = central.getSibling(EdgeDirection.N);
+        Vertex east = central.getSibling(EdgeDirection.E);
+        Vertex south = central.getSibling(EdgeDirection.S);
+        Vertex northWest = central.getSibling(EdgeDirection.NW);
+        Vertex northEast = central.getSibling(EdgeDirection.NE);
+        Vertex southEast = central.getSibling(EdgeDirection.SE);
 
         ConcurrentMap<EdgeDirection, Vertex> westSiblings = west.getSiblingsEdges();
         ConcurrentMap<EdgeDirection, Vertex> southWestSiblings = southWest.getSiblingsEdges();
@@ -126,17 +134,21 @@ public class P1Test {
 
     @Test
     public void shouldHaveCorrectLabels() throws Exception {
-        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.S);
+        Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
         p1.apply(disconnectedNode);
-        Vertex west = disconnectedNode.getSibling(EdgeDirection.W);
-        Vertex southWest = disconnectedNode.getSibling(EdgeDirection.SW);
-        Vertex north = disconnectedNode.getSibling(EdgeDirection.N);
-        Vertex east = disconnectedNode.getSibling(EdgeDirection.E);
-        Vertex south = disconnectedNode.getSibling(EdgeDirection.S);
-        Vertex northWest = disconnectedNode.getSibling(EdgeDirection.NW);
-        Vertex northEast = disconnectedNode.getSibling(EdgeDirection.NE);
-        Vertex southEast = disconnectedNode.getSibling(EdgeDirection.SE);
+        
+        Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
+        Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
+        
+        Vertex west = central.getSibling(EdgeDirection.W);
+        Vertex southWest = central.getSibling(EdgeDirection.SW);
+        Vertex north = central.getSibling(EdgeDirection.N);
+        Vertex east = central.getSibling(EdgeDirection.E);
+        Vertex south = central.getSibling(EdgeDirection.S);
+        Vertex northWest = central.getSibling(EdgeDirection.NW);
+        Vertex northEast = central.getSibling(EdgeDirection.NE);
+        Vertex southEast = central.getSibling(EdgeDirection.SE);
 
         assertEquals(VertexLabel.E, west.getLabel());
         assertEquals(VertexLabel.E, north.getLabel());
