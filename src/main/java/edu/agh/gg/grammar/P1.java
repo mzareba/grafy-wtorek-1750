@@ -12,15 +12,16 @@ public class P1 implements Production {
 
     @Override
     public void apply(Vertex vertex) {
-        Vertex leftTopI = Vertex.withoutParent(VertexLabel.I);
-        Vertex leftBottomI = Vertex.withoutParent(VertexLabel.I);
-        Vertex rightTopI = Vertex.withoutParent(VertexLabel.I);
-        Vertex rightBottomI = Vertex.withoutParent(VertexLabel.I);
+        Vertex leftTopI = vertex.createChild(VertexLabel.I);
+        Vertex leftBottomI = vertex.createChild(VertexLabel.I);
+        Vertex rightTopI = vertex.createChild(VertexLabel.I);
+        Vertex rightBottomI = vertex.createChild(VertexLabel.I);
 
         Vertex leftTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex rightTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex leftMiddleE = Vertex.withoutParent(VertexLabel.E);
+        Vertex middleMiddleE = Vertex.withoutParent(VertexLabel.E);
         Vertex rightMiddleE = Vertex.withoutParent(VertexLabel.E);
         Vertex leftBottomE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleBottomE = Vertex.withoutParent(VertexLabel.E);
@@ -38,28 +39,28 @@ public class P1 implements Production {
         leftTopI.connectToSibling(EdgeDirection.NW, leftTopE);
         leftTopI.connectToSibling(EdgeDirection.NE, middleTopE);
         leftTopI.connectToSibling(EdgeDirection.SW, leftMiddleE);
-        leftTopI.connectToSibling(EdgeDirection.SE, vertex);
+        leftTopI.connectToSibling(EdgeDirection.SE, middleMiddleE);
 
         rightTopI.connectToSibling(EdgeDirection.NW, middleTopE);
         rightTopI.connectToSibling(EdgeDirection.NE, rightTopE);
-        rightTopI.connectToSibling(EdgeDirection.SW, vertex);
+        rightTopI.connectToSibling(EdgeDirection.SW, middleMiddleE);
         rightTopI.connectToSibling(EdgeDirection.SE, rightMiddleE);
 
         leftBottomI.connectToSibling(EdgeDirection.NW, leftMiddleE);
-        leftBottomI.connectToSibling(EdgeDirection.NE, vertex);
+        leftBottomI.connectToSibling(EdgeDirection.NE, middleMiddleE);
         leftBottomI.connectToSibling(EdgeDirection.SW, leftBottomE);
         leftBottomI.connectToSibling(EdgeDirection.SE, middleBottomE);
 
-        rightBottomI.connectToSibling(EdgeDirection.NW, vertex);
+        rightBottomI.connectToSibling(EdgeDirection.NW, middleMiddleE);
         rightBottomI.connectToSibling(EdgeDirection.NE, rightMiddleE);
         rightBottomI.connectToSibling(EdgeDirection.SW, middleBottomE);
         rightBottomI.connectToSibling(EdgeDirection.SE, rightBottomE);
 
-        vertex.connectToSibling(EdgeDirection.W, leftMiddleE);
-        vertex.connectToSibling(EdgeDirection.N, middleTopE);
-        vertex.connectToSibling(EdgeDirection.E, rightMiddleE);
-        vertex.connectToSibling(EdgeDirection.S, middleBottomE);
+        middleMiddleE.connectToSibling(EdgeDirection.W, leftMiddleE);
+        middleMiddleE.connectToSibling(EdgeDirection.N, middleTopE);
+        middleMiddleE.connectToSibling(EdgeDirection.E, rightMiddleE);
+        middleMiddleE.connectToSibling(EdgeDirection.S, middleBottomE);
 
-        vertex.setLabel(VertexLabel.E);
+        vertex.setLabel(VertexLabel.i);
     }
 }
