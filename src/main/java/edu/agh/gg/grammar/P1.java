@@ -13,16 +13,15 @@ public class P1 implements Production {
 
     @Override
     public void apply(Vertex vertex) {
-        Vertex leftTopI = vertex.createChild(EdgeDirection.SE);
-        Vertex leftBottomI = vertex.createChild(EdgeDirection.NE);
-        Vertex rightTopI = vertex.createChild(EdgeDirection.SW);
-        Vertex rightBottomI = vertex.createChild(EdgeDirection.NW);
+        Vertex leftTopI = vertex.createChild(EdgeDirection.NW);
+        Vertex leftBottomI = vertex.createChild(EdgeDirection.SW);
+        Vertex rightTopI = vertex.createChild(EdgeDirection.NE);
+        Vertex rightBottomI = vertex.createChild(EdgeDirection.SE);
         
         leftTopI.setLabel(VertexLabel.I); 
         leftBottomI.setLabel(VertexLabel.I); 
         rightTopI.setLabel(VertexLabel.I); 
-        rightBottomI.setLabel(VertexLabel.I); 
-
+        rightBottomI.setLabel(VertexLabel.I);
 
         Vertex leftTopE = Vertex.withoutParent(VertexLabel.E);
         Vertex middleTopE = Vertex.withoutParent(VertexLabel.E);

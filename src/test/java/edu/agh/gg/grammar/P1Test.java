@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 public class P1Test {
 
     @Test
-    public void shouldNotCreateAnyChildren() throws Exception {
+    public void shouldCreateNewLevel() throws Exception {
         Vertex disconnectedNode = Vertex.withoutParent(VertexLabel.I);
         Production p1 = new P1();
 
@@ -28,8 +28,8 @@ public class P1Test {
         Production p1 = new P1();
         p1.apply(disconnectedNode);
         
-        Vertex northWestChildren = disconnectedNode.getChild(EdgeDirection.NW);
-        Vertex central = northWestChildren.getSibling(EdgeDirection.SE);       
+        Vertex northWestChild = disconnectedNode.getChild(EdgeDirection.NW);
+        Vertex central = northWestChild.getSibling(EdgeDirection.SE);
         
         Vertex west = central.getSibling(EdgeDirection.W);
         Vertex southWest = central.getSibling(EdgeDirection.SW);
@@ -50,14 +50,14 @@ public class P1Test {
         assertNotNull(northEast);
         assertNotNull(southEast);
 
-        assertEquals(west.getSiblingsEdges().size(), 5);
-        assertEquals(southWest.getSiblingsEdges().size(), 3);
-        assertEquals(north.getSiblingsEdges().size(), 5);
-        assertEquals(east.getSiblingsEdges().size(), 5);
-        assertEquals(south.getSiblingsEdges().size(), 5);
-        assertEquals(northWest.getSiblingsEdges().size(), 3);
-        assertEquals(northEast.getSiblingsEdges().size(), 3);
-        assertEquals(southEast.getSiblingsEdges().size(), 3);
+        assertEquals(5, west.getSiblingsEdges().size());
+        assertEquals(4, southWest.getSiblingsEdges().size());
+        assertEquals(5, north.getSiblingsEdges().size());
+        assertEquals(5, east.getSiblingsEdges().size());
+        assertEquals(5, south.getSiblingsEdges().size());
+        assertEquals(4, northWest.getSiblingsEdges().size());
+        assertEquals(4, northEast.getSiblingsEdges().size());
+        assertEquals(4, southEast.getSiblingsEdges().size());
     }
 
     @Test
