@@ -55,6 +55,24 @@ public class P2 implements Production {
 
     @Override
     public void apply(Vertex vertex) {
-        //TODO
+        Vertex leftTopGrayI = vertex.getChild(NE).getChild(NE);
+        Vertex leftBottomGrayI = vertex.getChild(NE).getChild(SW);
+        Vertex leftTopE = leftTopGrayI.getSibling(NE);
+        Vertex leftMiddleE = leftTopGrayI.getSibling(SE);
+        Vertex leftBottomE = leftBottomGrayI.getSibling(SE);
+
+        leftTopGrayI.getSiblingsEdges().remove(NE, leftTopE);
+        leftTopGrayI.getSiblingsEdges().remove(SE, leftMiddleE);
+        leftBottomGrayI.getSiblingsEdges().remove(NE, leftMiddleE);
+        leftBottomGrayI.getSiblingsEdges().remove(SE, leftBottomE);
+
+        Vertex rightTopE = vertex.getChild(SW).getChild(NW).getSibling(NW);
+        Vertex rightMiddleE = vertex.getChild(SW).getChild(NW).getSibling(SW);
+        Vertex rightBottomE = vertex.getChild(SW).getChild(SW).getSibling(SW).getSibling(SW);
+
+        leftTopGrayI.connectToSibling(NE, rightTopE);
+        leftTopGrayI.connectToSibling(SE, rightMiddleE);
+        leftBottomGrayI.connectToSibling(NE, rightMiddleE);
+        leftBottomGrayI.connectToSibling(SE, rightBottomE);
     }
 }
