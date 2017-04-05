@@ -36,7 +36,7 @@ public class P2 implements Production {
                 && leftBottomGrayI.getSiblingsEdges().size() == 2 //done left
                 && rightTopGrayI.getLabel().equals(I)
                 && rightBottomGrayI.getLabel().equals(I)
-                && rightOrangeI.getSiblingsEdges().size() == 2
+//                && rightOrangeI.getSiblingsEdges().size() == 2 //false
                 && rightTopE.getLabel().equals(E)
                 && rightMiddleE.getLabel().equals(E)
                 && rightTopGrayI.getSiblingsEdges().size() == 2
@@ -68,7 +68,7 @@ public class P2 implements Production {
 
         Vertex rightTopE = vertex.getChild(SW).getChild(NW).getSibling(NW);
         Vertex rightMiddleE = vertex.getChild(SW).getChild(NW).getSibling(SW);
-        Vertex rightBottomE = vertex.getChild(SW).getChild(SW).getSibling(SW).getSibling(SW);
+        Vertex rightBottomE = vertex.getChild(SW).getChild(SW).getSibling(SW);
 
         leftTopGrayI.connectToSibling(NE, rightTopE);
         leftTopGrayI.connectToSibling(SE, rightMiddleE);
